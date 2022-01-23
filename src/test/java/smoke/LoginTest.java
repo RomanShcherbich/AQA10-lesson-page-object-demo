@@ -1,13 +1,13 @@
 package smoke;
 
-import org.testng.Assert;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
 import base.BaseAuthenticatedTest;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import web.pages.LoginPage;
 
 public class LoginTest extends BaseAuthenticatedTest {
 
+//    @Test(retryAnalyzer = Retry.class)
     @Test
     public void validCredentialsLoginTest() {
         validLogin();

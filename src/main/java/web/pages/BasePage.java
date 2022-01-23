@@ -15,7 +15,7 @@ public abstract class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.explicitWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.explicitWait = new WebDriverWait(driver, Duration.ofSeconds(1));
     }
 
     public BasePage open() {

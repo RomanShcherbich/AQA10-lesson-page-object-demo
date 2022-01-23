@@ -4,26 +4,53 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
+    <groupId>by.teachmeskills</groupId>
     <artifactId>SauceDemo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <testNgSuiteFilePath>src/test/resources/</testNgSuiteFilePath>
+        <suite>TestSuite</suite>
+        <selenium.version>4.1.2</selenium.version>
+        <default.browser>CHROME</default.browser>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.1.0</version>
+            <version>${selenium.version}</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.4.0</version>
+            <version>7.5</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <username>default.maven.username</username>
+                        <password>default.maven.password</password>
+                    </systemPropertyVariables>
+                    <environmentVariables>
+                        <browser>${default.browser}</browser>
+                    </environmentVariables>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${testNgSuiteFilePath}${suite}.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

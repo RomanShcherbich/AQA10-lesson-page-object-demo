@@ -1,8 +1,8 @@
 package smoke;
 
+import base.BaseAuthenticatedTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import base.BaseAuthenticatedTest;
 
 import static smoke.ProductTest.TEST_PRODUCT_TITLE;
 
