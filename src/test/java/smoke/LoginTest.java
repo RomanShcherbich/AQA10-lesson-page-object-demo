@@ -1,23 +1,15 @@
-package saucedemotest;
+package smoke;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import base.BaseAuthenticatedTest;
 import web.pages.LoginPage;
 
-public class LoginTest extends BaseTest {
+public class LoginTest extends BaseAuthenticatedTest {
 
-
-    public void openLoginPage() {
-        loginPage.open();
-        Assert.assertTrue(loginPage.isPageLoaded(), "Login page is not loaded");
-    }
-
-    @BeforeMethod
+    @Test
     public void validCredentialsLoginTest() {
-        openLoginPage();
-        loginPage.login(USERNAME, PASSWORD);
-        Assert.assertTrue(catalogPage.isPageLoaded(), "Catalog page is not loaded");
+        validLogin();
     }
 
     @Test

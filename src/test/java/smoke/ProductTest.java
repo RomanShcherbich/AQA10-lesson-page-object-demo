@@ -1,13 +1,15 @@
-package saucedemotest;
+package smoke;
 
 import org.testng.annotations.Test;
+import base.BaseAuthenticatedTest;
 
-public class ProductTest extends LoginTest {
+public class ProductTest extends BaseAuthenticatedTest {
 
     public static final String TEST_PRODUCT_TITLE = "Test.allTheThings() T-Shirt (Red)";
 
     @Test
     public void addProductToCartTest() {
+        validLogin();
         //add test product to cart
         catalogPage.addProductToCart(TEST_PRODUCT_TITLE);
         cartPage.open();

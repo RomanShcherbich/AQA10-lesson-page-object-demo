@@ -15,5 +15,4 @@ public class CartPage extends BasePage {
         this.basePageElementId = TITLE_LOCATOR;
     }
 
-
 }

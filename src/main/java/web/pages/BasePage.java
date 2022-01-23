@@ -1,16 +1,21 @@
 package web.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public abstract class BasePage {
 
-    WebDriver driver;
+    protected WebDriver driver;
+    protected WebDriverWait explicitWait;
     protected String baseUrl;
     protected By basePageElementId;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
+        this.explicitWait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public BasePage open() {
@@ -19,7 +24,12 @@ public abstract class BasePage {
     }
 
     public boolean isPageLoaded() {
-        return driver.findElement(basePageElementId).isDisplayed();
+        try {
+            explicitWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(basePageElementId));
+        } catch (TimeoutException timeoutException) {
+            return false;
+        }
+        return true;
     }
 
 }
