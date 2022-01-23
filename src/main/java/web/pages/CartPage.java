@@ -10,9 +10,7 @@ public class CartPage extends BasePage {
     private static final By TITLE_LOCATOR = By.xpath("//span[@class='title' and text()='Your Cart']");
 
     public CartPage(WebDriver driver) {
-        super(driver);
-        this.baseUrl=BASE_URL;
-        this.basePageElementId = TITLE_LOCATOR;
+        super(driver, BASE_URL, TITLE_LOCATOR);
     }
 
 }

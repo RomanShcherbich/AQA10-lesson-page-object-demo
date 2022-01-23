@@ -20,9 +20,7 @@ public class CatalogPage extends BasePage {
 
 
     public CatalogPage(WebDriver driver) {
-        super(driver);
-        this.baseUrl = BASE_URL;
-        this.basePageElementId = TITLE_LOCATOR;
+        super(driver, BASE_URL, TITLE_LOCATOR);
     }
 
     public void addProductToCart(String partialProductTitle) {

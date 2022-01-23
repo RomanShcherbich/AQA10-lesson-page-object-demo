@@ -5,8 +5,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.*;
 import web.pages.CartPage;
-import web.pages.LoginPage;
 import web.pages.CatalogPage;
+import web.pages.LoginPage;
+
 import java.io.File;
 import java.time.Duration;
 import java.util.HashMap;

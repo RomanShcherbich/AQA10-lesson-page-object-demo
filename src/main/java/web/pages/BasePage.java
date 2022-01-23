@@ -13,14 +13,15 @@ public abstract class BasePage {
     protected String baseUrl;
     protected By basePageElementId;
 
-    public BasePage(WebDriver driver) {
+    public BasePage(WebDriver driver, String baseUrl, By basePageElementId) {
         this.driver = driver;
         this.explicitWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.baseUrl = baseUrl;
+        this.basePageElementId = basePageElementId;
     }
 
-    public BasePage open() {
+    public void open() {
         driver.get(baseUrl);
-        return this;
     }
 
     public boolean isPageLoaded() {
