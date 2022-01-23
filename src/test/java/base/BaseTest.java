@@ -3,6 +3,7 @@ package base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
 import org.testng.annotations.*;
 import web.pages.CartPage;
 import web.pages.LoginPage;
@@ -18,15 +19,22 @@ public class BaseTest {
     protected CatalogPage catalogPage;
     protected CartPage cartPage;
 
-    public static final String USERNAME = "standard_user";
-    public static final String PASSWORD = "secret_sauce";
+    public static String USERNAME = "standard_user1";
+    public static String PASSWORD = "secret_sauce1";
 
 
     public static final File RESOURCE_PATH_FILE = new File("src/test/resources");
     public static final String ABSOLUTE_RESOURCE_PATH = RESOURCE_PATH_FILE.getAbsolutePath();
 
 
-    @BeforeMethod
+    @Parameters ( {"username", "password"} )
+    @BeforeSuite(groups = {"config"})
+    public void addParams(String username, String password) {
+        USERNAME = username;
+        PASSWORD = password;
+    }
+
+    @BeforeMethod(groups = {"config"})
     public void setup(){
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
         ChromeOptions chromeOptions = new ChromeOptions();
@@ -44,7 +52,7 @@ public class BaseTest {
         cartPage = new CartPage(driver);
     }
 
-    @AfterMethod(alwaysRun=true)
+    @AfterMethod(alwaysRun=true, groups = {"config"})
     public void teardown() {
         driver.close();
         driver.quit();

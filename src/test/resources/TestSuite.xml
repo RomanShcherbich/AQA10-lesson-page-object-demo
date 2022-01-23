@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!--<suite name="Test suite demo" thread-count="3" parallel="tests" >-->
+<suite name="Test suite demo">
+    <test name="test 1">
+        <parameter name="keyword" value="keyValue"/>
+        <classes>
+            <class name="smoke.LoginTest">
+                <methods>
+                    <include name="validCredentialsLoginTest"/>
+                    <include name="USERNAME_PLACEHOLDER_TEST"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="test 2">
+        <parameter name="keyword" value="keyValue"/>
+        <classes>
+            <class name="smoke.CatalogTest">
+                <methods>
+                    <include name="menuIsOpenedTest"/>
+                    <include name="badgeIsDisplayedTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="test 3">
+        <parameter name="keyword" value="keyValue"/>
+        <classes>
+            <class name="smoke.ProductTest">
+                <methods>
+                    <include name="addProductToCartTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

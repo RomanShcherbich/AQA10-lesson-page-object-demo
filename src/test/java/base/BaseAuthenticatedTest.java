@@ -1,8 +1,9 @@
 package base;
 
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 
-public class BaseAuthenticatedTest extends BaseTest{
+public class BaseAuthenticatedTest extends BaseTest {
 
     public void openLoginPage() {
         loginPage.open();

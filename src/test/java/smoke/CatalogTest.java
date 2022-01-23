@@ -8,7 +8,7 @@ import static smoke.ProductTest.TEST_PRODUCT_TITLE;
 
 public class CatalogTest extends BaseAuthenticatedTest {
 
-    @Test
+    @Test(groups = {"smoke"})
     public void menuIsOpenedTest(){
         validLogin();
         Assert.assertTrue(catalogPage.openMenu(), "Menu cross button is not displayed");
