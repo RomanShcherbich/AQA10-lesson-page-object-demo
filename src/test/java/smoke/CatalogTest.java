@@ -11,7 +11,7 @@ public class CatalogTest extends BaseAuthenticatedTest {
     @Test
     public void menuIsOpenedTest(){
         validLogin();
-        Assert.assertTrue(catalogPage.openMenu(), "Menu cross button is not displayed");
+        Assert.assertTrue(catalogPage.burgerMenu.open(), "Menu cross button is not displayed");
     }
 
     @Test
