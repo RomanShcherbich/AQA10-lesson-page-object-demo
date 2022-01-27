@@ -9,17 +9,32 @@ public class LoginTest extends BaseAuthenticatedTest {
 
     @Test
     public void validCredentialsLoginTest() {
-        validLogin();
+        Assert.assertNotNull(
+                loginPage
+                        .open()
+                        .isPageLoaded()
+                , "Login page is not loaded"
+        );
+
+        Assert.assertNotNull(
+                loginPage
+                        .validLogin(USERNAME, PASSWORD)
+                        .isPageLoaded()
+                , "Catalog page is not loaded."
+        );
     }
 
     @Test
-    public void USERNAME_PLACEHOLDER_TEST() {
-        openLoginPage();
-        Assert.assertEquals(
-                loginPage.getUsernamePlaceholder(),
-                LoginPage.USERNAME_TEXT_FIELD_PLACEHOLDER,
-                "Username placeholder is not valid"
+    public void validCredentialsLoginTest2() {
+        Assert.assertNotNull(
+                loginPage
+                        .open()
+                        .isPageLoaded()
+                        .validLogin(USERNAME, PASSWORD)
+                        .isPageLoaded()
+                , "Catalog page is not loaded"
         );
     }
+
 
 }

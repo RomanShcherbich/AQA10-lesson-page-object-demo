@@ -6,22 +6,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public abstract class BasePage {
-
-    protected WebDriver driver;
-    protected WebDriverWait explicitWait;
-    protected String baseUrl;
-    protected By basePageElementId;
+public abstract class BasePage extends BaseElement {
 
     public BasePage(WebDriver driver) {
-        this.driver = driver;
-        this.explicitWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        super(driver);
     }
 
+    public abstract BasePage open();
+/*
     public BasePage open() {
         driver.get(baseUrl);
         return this;
     }
+
+
 
     public boolean isPageLoaded() {
         try {
@@ -32,4 +30,10 @@ public abstract class BasePage {
         return true;
     }
 
+
+
+    public boolean validateProductInCart() {
+        return true;
+    }
+ */
 }

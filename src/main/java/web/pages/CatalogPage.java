@@ -1,6 +1,7 @@
 package web.pages;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
@@ -21,12 +22,11 @@ public class CatalogPage extends BasePage {
 
     public CatalogPage(WebDriver driver) {
         super(driver);
-        this.baseUrl = BASE_URL;
-        this.basePageElementId = TITLE_LOCATOR;
     }
 
-    public void addProductToCart(String partialProductTitle) {
+    public CatalogPage addProductToCart(String partialProductTitle) {
         driver.findElement(By.xpath(String.format(PRODUCT_XPATH_PATTERN, partialProductTitle))).click();
+        return this;
     }
 
     public boolean openMenu(){
@@ -55,6 +55,22 @@ public class CatalogPage extends BasePage {
             }
         }
         return false;
+    }
+
+    @Override
+    public CatalogPage isPageLoaded() {
+        try {
+            explicitWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(TITLE_LOCATOR));
+        } catch (TimeoutException timeoutException) {
+            return null;
+        }
+        return this;
+    }
+
+    @Override
+    public CatalogPage open() {
+        driver.get(BASE_URL);
+        return this;
     }
 
 }
