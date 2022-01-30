@@ -1,6 +1,7 @@
 package base;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 
 public class BaseAuthenticatedTest extends BaseTest{
 
@@ -13,6 +14,10 @@ public class BaseAuthenticatedTest extends BaseTest{
         openLoginPage();
         loginPage.login(USERNAME, PASSWORD);
         Assert.assertTrue(catalogPage.isPageLoaded(), "Catalog page is not loaded");
+    }
+
+    public void asserts() {
+        softAssert.assertAll();
     }
 
 }

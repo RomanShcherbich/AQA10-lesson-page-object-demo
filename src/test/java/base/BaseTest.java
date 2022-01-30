@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.*;
+import org.testng.asserts.SoftAssert;
+import steps.LoginSteps;
 import web.pages.CartPage;
 import web.pages.LoginPage;
 import web.pages.CatalogPage;
@@ -17,19 +19,33 @@ public class BaseTest {
     protected LoginPage loginPage;
     protected CatalogPage catalogPage;
     protected CartPage cartPage;
+    protected LoginSteps loginSteps ;
+    protected SoftAssert softAssert = new SoftAssert();
 
-    public static final String USERNAME = "standard_user";
-    public static final String PASSWORD = "secret_sauce";
+//    public static final String USERNAME = "standard_user";
+//    public static final String PASSWORD = "secret_sauce";
+
+    public static String USERNAME;
+    public static String PASSWORD;
 
 
     public static final File RESOURCE_PATH_FILE = new File("src/test/resources");
     public static final String ABSOLUTE_RESOURCE_PATH = RESOURCE_PATH_FILE.getAbsolutePath();
 
+    @BeforeSuite(groups = {"config"})
+    @Parameters({"username", "password"})
+    public void setupSuite(String username, String password) {
+        System.out.println(" SUITE SETUP");
+        USERNAME = username;
+        PASSWORD = password;
+    }
 
-    @BeforeMethod
+
+    @BeforeMethod(groups = {"config"})
     public void setup(){
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
         ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless");
         chromeOptions.addArguments("--ignore-popup-blocking");
         chromeOptions.addArguments("--ignore-certificate-errors");
 
@@ -42,9 +58,12 @@ public class BaseTest {
         loginPage = new LoginPage(driver);
         catalogPage = new CatalogPage(driver);
         cartPage = new CartPage(driver);
+        loginSteps = new LoginSteps(loginPage, catalogPage, null);
+        loginSteps.setSoftAssert(softAssert);
     }
 
-    @AfterMethod(alwaysRun=true)
+
+    @AfterMethod(alwaysRun=true, groups = { "config" })
     public void teardown() {
         driver.close();
         driver.quit();

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Plural Suite">
+    <test name="PluralTest 1">
+        <classes>
+            <class name="math.PluralTest" />
+            <class name="math.PluralTest2" />
+        </classes>
+    </test> <!-- Test -->
+<!--    <test name="PluralTest 2">-->d
+<!--        <classes>-->
+<!--            <class name="math.PluralTest" />-->
+<!--        </classes>-->
+<!--    </test> &lt;!&ndash; Test &ndash;&gt;-->
+</suite>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Sauce demo Test" parallel="classes" thread-count="5">
+<!--<suite name="Sauce demo Test">-->
+
+<!--    <groups>-->
+<!--        <run>-->
+<!--            <include name="config"/>-->
+<!--            <include name="smoke"/>-->
+<!--            <exclude name="slow"/>-->
+<!--        </run>-->
+<!--    </groups>-->
+
+    <parameter name="username" value="standard_user"/>
+    <parameter name="password" value="secret_sauce"/>
+    <parameter name="title" value="Test"/>
+
+    <test name="LoginTest">
+        <packages>
+            <package name="math"/>
+        </packages>
+        <classes>
+            <class name="smoke.LoginTest" />
+        </classes>
+    </test>
+    <test name="CatalogTest">
+        <classes>
+            <class name="smoke.CatalogTest" />
+        </classes>
+    </test>
+    <test name="ProductTest">
+        <classes>
+            <class name="smoke.ProductTest" />
+        </classes>
+    </test>
+</suite>
+

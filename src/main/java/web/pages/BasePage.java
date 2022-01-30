@@ -32,4 +32,20 @@ public abstract class BasePage {
         return true;
     }
 
+    public String getPlaceholder(By by) {
+        return driver.findElement(by).getAttribute("placeholder");
+    }
+
+    public String getPlaceholder(WebElement element) {
+        return element.getAttribute("placeholder");
+    }
+
+    public String getText(By by) {
+        String elementText = driver.findElement(by).getText();
+        if (elementText == null || elementText.isEmpty()) {
+            elementText = driver.findElement(by).getAttribute("value");
+        }
+        return elementText;
+    }
+
 }

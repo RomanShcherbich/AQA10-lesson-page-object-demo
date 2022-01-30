@@ -25,8 +25,20 @@ public class LoginPage extends BasePage {
         driver.findElement(LOGIN_BUTTON).click();
     }
 
+    public void insertUserName(String username) {
+        driver.findElement(USERNAME_TEXT_FIELD).sendKeys(username);
+    }
+
     public String getUsernamePlaceholder() {
-        return driver.findElement(USERNAME_TEXT_FIELD).getAttribute("placeholder");
+        return getPlaceholder(USERNAME_TEXT_FIELD);
+    }
+
+    public String getPasswordPlaceholder() {
+        return getPlaceholder(PASSWORD_TEXT_FIELD);
+    }
+
+    public String getButtonText() {
+        return getText(LOGIN_BUTTON);
     }
 
 }
