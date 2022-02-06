@@ -1,6 +1,8 @@
 package smoke;
 
 import base.BaseAuthenticatedTest;
+import io.qameta.allure.Issue;
+import io.qameta.allure.TmsLink;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import web.pages.LoginPage;
@@ -9,6 +11,8 @@ public class LoginTest extends BaseAuthenticatedTest {
 
 //    @Test(retryAnalyzer = Retry.class)
     @Test
+    @TmsLink("CALC-2")
+    @Issue("CALC-3")
     public void validCredentialsLoginTest() {
         validLogin();
     }

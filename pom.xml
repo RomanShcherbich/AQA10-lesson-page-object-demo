@@ -14,7 +14,9 @@
         <maven.compiler.target>17</maven.compiler.target>
         <testNgSuiteFilePath>src/test/resources/</testNgSuiteFilePath>
         <suite>TestSuite</suite>
+        <aspectj.version>1.9.8.M1</aspectj.version>
         <selenium.version>4.1.2</selenium.version>
+        <allure-testng.version>2.6.0</allure-testng.version>
         <default.browser>CHROME</default.browser>
     </properties>
 
@@ -27,7 +29,12 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.5</version>
+            <version>7.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>2.17.2</version>
         </dependency>
     </dependencies>
 
@@ -38,9 +45,18 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <configuration>
+                    <argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
+                    <systemProperties>
+<!--                        <property>-->
+<!--                            <name>allure.results.directory</name>-->
+<!--                            <value>${project.build.directory}/allure-results</value>-->
+<!--                        </property>-->
+                    </systemProperties>
                     <systemPropertyVariables>
-                        <username>default.maven.username</username>
-                        <password>default.maven.password</password>
+<!--                        <allure.link.issue.pattern>https://tmsaqa10present.atlassian.net/browse/</allure.link.issue.pattern>-->
+<!--                        <allure.link.tms.pattern>https://tmsaqa10present.atlassian.net/browse/</allure.link.tms.pattern>-->
+                        <username>standard_user</username>
+                        <password>secret_sauce</password>
                     </systemPropertyVariables>
                     <environmentVariables>
                         <browser>${default.browser}</browser>
@@ -49,6 +65,18 @@
                         <suiteXmlFile>${testNgSuiteFilePath}${suite}.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
+            <dependencies>
+                <dependency>
+                    <groupId>org.aspectj</groupId>
+                    <artifactId>aspectjweaver</artifactId>
+                    <version>${aspectj.version}</version>
+                </dependency>
+            </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.11.2</version>
             </plugin>
         </plugins>
     </build>

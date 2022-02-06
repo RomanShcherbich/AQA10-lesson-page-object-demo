@@ -9,7 +9,7 @@ public class ExternalPropertyTest {
     @Test(retryAnalyzer = Retry.class)
     public void browserPropertyTest() {
         String externalProperty = System.getenv("browser");
-        Assert.assertEquals(externalProperty, "CHROME2");
+        Assert.assertEquals(externalProperty, "CHROME");
     }
 
 

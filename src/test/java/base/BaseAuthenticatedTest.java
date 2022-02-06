@@ -1,12 +1,6 @@
 package base;
 
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.testng.Assert;
-import org.testng.annotations.Parameters;
-
-import java.io.File;
-import java.io.FileOutputStream;
 
 public class BaseAuthenticatedTest extends BaseTest {
 

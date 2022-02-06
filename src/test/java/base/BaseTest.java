@@ -1,10 +1,12 @@
 package base;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
+import utils.AllureUtils;
 import utils.TestListener;
 import web.pages.CartPage;
 import web.pages.LoginPage;
@@ -37,6 +39,7 @@ public class BaseTest {
 //        PASSWORD = password;
 //    }
 
+    @Step("Определяем параметры входа.")
     public void initParams() {
         USERNAME = System.getProperty("username");
         PASSWORD = System.getProperty("password");
@@ -47,7 +50,7 @@ public class BaseTest {
         initParams();
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
         ChromeOptions chromeOptions = new ChromeOptions();
-//        chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--headless");
         chromeOptions.addArguments("--ignore-popup-blocking");
         chromeOptions.addArguments("--ignore-certificate-errors");
 
@@ -69,7 +72,7 @@ public class BaseTest {
         context.setAttribute(variable, driver);
     }
 
-    @AfterClass(alwaysRun=true, groups = {"config"})
+    @AfterMethod(alwaysRun=true, groups = {"config"})
     public void teardown() {
         driver.close();
         driver.quit();
