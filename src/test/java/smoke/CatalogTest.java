@@ -1,14 +1,14 @@
 package smoke;
 
+import base.BaseAuthenticatedTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import base.BaseAuthenticatedTest;
 
 import static smoke.ProductTest.TEST_PRODUCT_TITLE;
 
 public class CatalogTest extends BaseAuthenticatedTest {
 
-    @Test
+    @Test(groups = {"smoke"})
     public void menuIsOpenedTest(){
         validLogin();
         Assert.assertTrue(catalogPage.openMenu(), "Menu cross button is not displayed");

@@ -1,7 +1,7 @@
 package smoke;
 
-import org.testng.annotations.Test;
 import base.BaseAuthenticatedTest;
+import org.testng.annotations.Test;
 
 public class ProductTest extends BaseAuthenticatedTest {
 
