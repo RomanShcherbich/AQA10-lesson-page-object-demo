@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import utils.CapabilitiesGenerator;
+import utils.PropertiesUtils;
 import utils.TestListener;
 import web.pages.CartPage;
 import web.pages.LoginPage;
@@ -22,8 +23,8 @@ public class BaseTest {
     protected CatalogPage catalogPage;
     protected CartPage cartPage;
 
-    public static String USERNAME = "standard_user";
-    public static String PASSWORD = "secret_sauce";
+    public static String USERNAME = PropertiesUtils.getEnv("valid_login");
+    public static String PASSWORD = PropertiesUtils.getEnv("valid_password");
 
 
     @BeforeMethod(groups = {"config"})

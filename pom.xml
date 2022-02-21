@@ -15,7 +15,6 @@
         <testNgSuiteFilePath>src/test/resources/</testNgSuiteFilePath>
         <testNgSuiteFileName>TestSuite</testNgSuiteFileName>
         <testProp>MAVEN_TEST</testProp>
-        <driver_path>src/test/resources/mac/98/chromedriver</driver_path>
         <aspectj.version>1.9.8</aspectj.version>
     </properties>
 
@@ -49,7 +48,6 @@
                     <threadCount>10</threadCount>
                     <parallel>tests</parallel>
                     <systemPropertyVariables>
-                        <driver_path>${driver_path}</driver_path>
                         <testProp>${testProp}</testProp>
                     </systemPropertyVariables>
                     <suiteXmlFiles>
