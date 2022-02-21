@@ -48,10 +48,8 @@
                     <argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
                     <threadCount>10</threadCount>
                     <parallel>tests</parallel>
-                    <environmentVariables>
-                        <driver_path>${driver_path}</driver_path>
-                    </environmentVariables>
                     <systemPropertyVariables>
+                        <driver_path>${driver_path}</driver_path>
                         <testProp>${testProp}</testProp>
                     </systemPropertyVariables>
                     <suiteXmlFiles>
