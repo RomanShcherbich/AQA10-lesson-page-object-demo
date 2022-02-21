@@ -15,6 +15,7 @@
         <testNgSuiteFilePath>src/test/resources/</testNgSuiteFilePath>
         <testNgSuiteFileName>TestSuite</testNgSuiteFileName>
         <testProp>MAVEN_TEST</testProp>
+        <driver_path>src/test/resources/mac/98/chromedriver</driver_path>
         <aspectj.version>1.9.8</aspectj.version>
     </properties>
 
@@ -47,6 +48,9 @@
                     <argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
                     <threadCount>10</threadCount>
                     <parallel>tests</parallel>
+                    <environmentVariables>
+                        <driver_path>${driver_path}</driver_path>
+                    </environmentVariables>
                     <systemPropertyVariables>
                         <testProp>${testProp}</testProp>
                     </systemPropertyVariables>
