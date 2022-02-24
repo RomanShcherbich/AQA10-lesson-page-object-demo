@@ -7,14 +7,13 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('tests') {
             steps {
                 // Get some code from a GitHub repository
                 git 'https://github.com/RomanShcherbich/AQA10-lesson-page-object-demo.git'
 
                 // Run Maven on a Unix agent.
-//                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
-                sh "mvn clean test -Dmaven.compiler.source=11 -Dmaven.compiler.target=11"
+                sh "mvn clean test -Dmaven.test.failure.ignore=true -Dmaven.compiler.source=11 -Dmaven.compiler.target=11"
             }
 
             post {
@@ -22,9 +21,23 @@ pipeline {
                 // failed, record the test results and archive the jar file.
                 success {
                     junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
                 }
             }
         }
+
+        stage('reports') {
+            steps {
+                script {
+                     allure([
+                             includeProperties: false,
+                             jdk: '',
+                             properties: [],
+                             reportBuildPolicy: 'ALWAYS',
+                             results: [[path: 'target/allure-results']]
+                     ])
+                }
+            }
+        }
+
     }
 }

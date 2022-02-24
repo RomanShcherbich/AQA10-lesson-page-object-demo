@@ -14,11 +14,12 @@ public class CapabilitiesGenerator {
     public static ChromeOptions getChromeOptions() {
         ChromeOptions options = new ChromeOptions();
         String os = System.getProperty("os.name").toLowerCase();
-        System.out.println("Operational system: " + os + "; Driver path: " + RESOURCE_PATH);
+        String driver_path = PropertiesUtils.getEnv("driver_path");
+        System.out.println("Operational system: " + os + "; Driver path: " + driver_path);
         // "/mac/98/chromedriver"
         // "/linux/86/chromedriver"
         // /windows/chromedriver.exe
-        System.setProperty("webdriver.chrome.driver", PropertiesUtils.getEnv("driver_path"));
+        System.setProperty("webdriver.chrome.driver", driver_path);
         options.addArguments("--ignore-certificate-errors");
         options.addArguments("--disable-popup-blocking");
         options.addArguments("--disable-notifications");
