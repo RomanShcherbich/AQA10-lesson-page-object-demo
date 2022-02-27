@@ -13,13 +13,13 @@ pipeline {
         maven "M3"
     }
 
-//     parameters {
-//         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
-//     }
-
     parameters {
-        string name: 'BRANCH', defaultValue: 'master'
+        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
     }
+
+//     parameters {
+//         string name: 'BRANCH', defaultValue: 'master'
+//     }
 
     stages {
 
@@ -37,7 +37,7 @@ pipeline {
                 git branch: '$BRANCH', url: 'https://github.com/RomanShcherbich/AQA10-lesson-page-object-demo.git'
 
                 // Run Maven on a Unix agent.
-                sh "mvn clean test -Dmaven.test.failure.ignore=true -Dmaven.compiler.source=11 -Dmaven.compiler.target=11"
+                sh "mvn clean test -Dmaven.test.failure.ignore=true -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 -DthreadCount=1"
             }
 
             post {

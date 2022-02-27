@@ -26,7 +26,7 @@ public class BaseAuthenticatedTest extends BaseTest {
                 "credentials", Map.of("username", USERNAME, "password", PASSWORD)
         ));
 //        AllureUtils.attachJson(json.getBytes(StandardCharsets.UTF_8));
-        Allure.addAttachment("Credentials from allure static", "text/json", json);
+        Allure.addAttachment("Credentials", "text/json", json);
         Assert.assertTrue(catalogPage.isPageLoaded(), "Catalog page is not loaded");
     }
 

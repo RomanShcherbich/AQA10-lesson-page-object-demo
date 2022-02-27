@@ -18,9 +18,9 @@ public class JsonUtils {
             return null;
         }
         StringBuilder jsonBuilder = new StringBuilder("{");
-        Iterator mapIter = map.entrySet().iterator();
+        Iterator<Map.Entry<String, Object>> mapIter = map.entrySet().iterator();
         while (mapIter.hasNext()) {
-            Map.Entry<String, Object> entry = (Map.Entry<String, Object>) mapIter.next();
+            Map.Entry<String, Object> entry = mapIter.next();
             if (entry.getValue() instanceof String) {
                 jsonBuilder.append(getEntryRaw(entry.getKey(), String.valueOf(entry.getValue())));
             } else if (entry.getValue() instanceof Map) {
