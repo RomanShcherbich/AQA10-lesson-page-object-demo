@@ -14,9 +14,9 @@ public class LoginTest extends BaseAuthenticatedTest {
 
     @Step("Second step {keyword}")
     public void productPageOpenedStep(String keyword) {
-        if (new Random().nextInt(2) == 1) {
-            Assert.fail(" Искусственный провал теста");
-        }
+//        if (new Random().nextInt(2) == 1) {
+//            Assert.fail(" Искусственный провал теста");
+//        }
     }
 
     @Step("Third step")
