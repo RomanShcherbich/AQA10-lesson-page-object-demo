@@ -29,9 +29,6 @@
         <parameter name="keyword" value="keyValue"/>
         <classes>
             <class name="smoke.ProductTest">
-                <methods>
-                    <include name="addProductToCartTest"/>
-                </methods>
             </class>
         </classes>
     </test>

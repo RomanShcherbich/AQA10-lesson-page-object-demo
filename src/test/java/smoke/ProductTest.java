@@ -1,7 +1,11 @@
 package smoke;
 
 import base.BaseAuthenticatedTest;
+import matcher.ProductMatchers;
+import model.Product;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class ProductTest extends BaseAuthenticatedTest {
 
@@ -15,6 +19,14 @@ public class ProductTest extends BaseAuthenticatedTest {
         cartPage.open();
         cartPage.isPageLoaded();
         //validate product added
+    }
+
+    @Test
+    public void sortedProductsTest(){
+        validLogin();
+        List<Product> savedProducts = catalogPage.getProductList();
+        catalogPage.sortProductsByNameDesc();
+        ProductMatchers.validateSortedProducts(catalogPage.getProductList(), savedProducts);
     }
 
 }
