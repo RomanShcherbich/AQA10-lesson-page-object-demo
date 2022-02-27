@@ -45,7 +45,14 @@ public class CatalogPage extends BasePage {
                     productElement.findElement(By.xpath(".".concat(PRODUCT_PRICE_XPATH))).getText().split("\\$")[1]
             );
             String desc = productElement.findElement(By.xpath(".".concat(PRODUCT_DESC_XPATH))).getText();
-            products.add(new Product(title, price, desc, null));
+            products.add(
+                    Product.builder()
+                            .title(title)
+                            .price(price)
+                            .description(desc)
+                            .image(null)
+                            .build()
+            );
         }
         return products;
     }
