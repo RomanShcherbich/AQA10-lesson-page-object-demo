@@ -16,6 +16,7 @@
         <testNgSuiteFileName>TestSuite</testNgSuiteFileName>
         <testProp>MAVEN_TEST</testProp>
         <aspectj.version>1.9.8</aspectj.version>
+        <threadCount>3</threadCount>
     </properties>
 
     <dependencies>
@@ -62,7 +63,7 @@
                 <version>3.0.0-M5</version>
                 <configuration>
                     <argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
-                    <threadCount>1</threadCount>
+                    <threadCount>${threadCount}</threadCount>
                     <parallel>tests</parallel>
                     <systemPropertyVariables>
                         <testProp>${testProp}</testProp>

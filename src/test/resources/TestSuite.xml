@@ -18,10 +18,6 @@
         <parameter name="keyword" value="keyValue"/>
         <classes>
             <class name="smoke.CatalogTest">
-                <methods>
-                    <include name="menuIsOpenedTest"/>
-                    <include name="badgeIsDisplayedTest"/>
-                </methods>
             </class>
         </classes>
     </test>
