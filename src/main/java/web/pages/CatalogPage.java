@@ -1,10 +1,16 @@
 package web.pages;
 
+import model.Product;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CatalogPage extends BasePage {
 
@@ -17,6 +23,13 @@ public class CatalogPage extends BasePage {
     private static final By BURGER_MENU_BUTTON = By.id("react-burger-menu-btn");
     private static final By BURGER_MENU_CLOSE_BUTTON = By.id("react-burger-cross-btn");
     private static final By SHOPPING_CART_BADGE = By.className("shopping_cart_badge");
+    private static final By PRODUCTS_LIST_CONTAINER = By.cssSelector("#inventory_container .inventory_item");
+    private static final By PRODUCT_TITLE = By.className("inventory_item_name");
+    private static final By PRODUCT_PRICE = By.className("inventory_item_price");
+    private static final By PRODUCT_DESC = By.className("inventory_item_desc");
+    private static final By ORDER_SELECT = By.className("product_sort_container");
+
+    Logger log = LogManager.getLogger(CatalogPage.class);
 
 
     public CatalogPage(WebDriver driver) {
@@ -55,6 +68,36 @@ public class CatalogPage extends BasePage {
             }
         }
         return false;
+    }
+
+    public List<Product> getProductList() {
+        log.info("Read all products in catalog");
+        List<Product> products = new ArrayList<>();
+        for (WebElement productElement : driver.findElements(PRODUCTS_LIST_CONTAINER)) {
+            String title = productElement.findElement(PRODUCT_TITLE).getText();
+            double price = Double.parseDouble(productElement.findElement(PRODUCT_PRICE).getText().split("\\$")[1]); // $\n7.99
+            String desc = productElement.findElement(PRODUCT_DESC).getText();
+//            Product newProd = new Product(title, price, desc, null);
+            Product newProd = Product.builder()
+                                    .title(title)
+                                    .price(price)
+                                    .description(desc)
+                                    .build();
+            products.add(newProd);
+        }
+        return products;
+    }
+
+    public void sortProductsByNameDesc() {
+        log.info("Sort catalog products by Name from Z to A");
+        Select orderList = new Select(driver.findElement(ORDER_SELECT));
+        List<WebElement> options = orderList.getOptions();
+        for (WebElement option : options) {
+            if (option.getText().contains("Z to A")) {
+                orderList.selectByVisibleText(option.getText());
+                return;
+            }
+        }
     }
 
 }
