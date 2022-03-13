@@ -35,6 +35,9 @@ pipeline {
             steps {
                 // Get some code from a GitHub repository
                 git branch: '$BRANCH', url: 'https://github.com/RomanShcherbich/AQA10-lesson-page-object-demo.git'
+                
+                sh 'pwd'
+                sh 'ls -l'
                 sh 'chmod -R 777 ./$driver_path'
                 // Run Maven on a Unix agent.
                 sh "mvn clean test -Dmaven.test.failure.ignore=true -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 -DthreadCount=1"
